@@ -22,11 +22,11 @@ def lasso(data):
     loss = (np.sum(y - Y)**2) / 6
     rate = 1e-10
     for i in range(int(1e9)):
-        y = np.dot(weight, x)
+        y = np.dot(weight, x.T)
         loss = (np.sum(y - Y) ** 2) / 6
         if loss < label:
             break
-        dw = np.dot((y - Y),x.T)
+        dw = np.dot((y - Y),x)
         weight = weight - dw * rate
     return weight @ data
 
