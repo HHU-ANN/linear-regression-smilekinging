@@ -21,7 +21,7 @@ def lasso(data):
     y = np.dot(weight,x.T)
     loss = (np.sum(y - Y)**2) / 6
     #loss = np.linalg.norm(loss,ord = 1)
-    rate = 1e-6
+    rate = 1e-10
     for i in range(int(1e10)):
         y = np.dot(weight, x.T)
         loss = (np.sum(y - Y) ** 2) / 6
