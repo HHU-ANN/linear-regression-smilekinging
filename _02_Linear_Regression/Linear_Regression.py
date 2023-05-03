@@ -10,7 +10,7 @@ except ImportError as e:
 
 def ridge(data):
     x,y = read_data()
-    lambd = -2e-5
+    lambd = -1
     weight = np.dot(np.linalg.inv((np.dot(x.T,x)+np.dot(lambd,np.eye(6)))),np.dot(x.T,y))
     return weight @ data
     
