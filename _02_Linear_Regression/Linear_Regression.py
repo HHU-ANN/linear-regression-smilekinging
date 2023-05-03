@@ -15,7 +15,7 @@ def ridge(data):
     return weight @ data
     
 def lasso(data):
-    label = 1e-10
+    label = 2e-5
     x,Y = read_data()
     weight = np.ones([1,6])
     y = np.dot(weight,x.T)
