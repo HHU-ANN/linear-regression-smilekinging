@@ -10,14 +10,14 @@ except ImportError as e:
 
 def ridge(data):
     x,y = read_data()
-    lambd = 2e-5
+    lambd = -2e-5
     weight = np.dot(np.linalg.inv((np.dot(x.T,x)+np.dot(lambd,np.eye(6)))),np.dot(x.T,y))
     return weight @ data
     
 def lasso(data):
     label = 2e-5
     x,Y = read_data()
-    weight = array([1,1,1,1,1,1])
+    weight = [1,1,1,1,1,1]
     y = np.dot(weight,x)
     loss = (np.sum(y - Y)**2) / 6
     rate = 1e-10
