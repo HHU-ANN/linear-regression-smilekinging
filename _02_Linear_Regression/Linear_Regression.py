@@ -17,7 +17,7 @@ def ridge(data):
 def lasso(data):
     label = 2e-5
     x,Y = read_data()
-    weight = np.ones([404,6])
+    weight = np.ones([6,404])
     y = np.dot(weight,x)
     loss = (np.sum(y - Y)**2) / 6
     rate = 1e-10
