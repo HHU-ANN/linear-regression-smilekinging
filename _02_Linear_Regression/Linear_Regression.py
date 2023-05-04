@@ -20,7 +20,7 @@ def lasso(data):
     x,Y = read_data()
     weight = np.ones([1,6])
     y = np.dot(weight,x.T)
-    lambd = 0.01
+    lambd = 2
     loss = (np.sum(y - Y)**2) / 6
     lw = np.linalg.norm(weight,ord = 1) + lambd * np.linalg.norm(y-Y,ord = 1) / 12
     rw = 0
