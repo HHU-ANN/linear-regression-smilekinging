@@ -31,7 +31,7 @@ def lasso(data):
             break
         dw = np.dot((y - Y),x)
         rw = lw
-        weight = weight - dw * rate
+        weight = weight * ( 1 - (rate * lambd / m)) - dw * rate
     return weight @ data
 
 def read_data(path='./data/exp02/'):
