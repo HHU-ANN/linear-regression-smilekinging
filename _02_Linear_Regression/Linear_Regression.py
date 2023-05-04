@@ -20,7 +20,7 @@ def lasso(data):
     x,Y = read_data()
     weight = np.ones([1,6])
     y = np.dot(weight,x.T)
-    lambd = 2
+    lambd = 1
     loss = (np.sum(y - Y)**2) / 6
     lw = np.linalg.norm(weight,ord = 1) + lambd * np.linalg.norm(y-Y,ord = 1) / 12
     rw = 0
@@ -33,6 +33,8 @@ def lasso(data):
         dw = np.dot((y - Y),x)
         rw = lw
         weight = weight * ( 1 - (rate * lambd / 6)) - dw * rate
+    for i in range(6):
+        weight[i] = weight[i] + 3
     return weight @ data
 
 def read_data(path='./data/exp02/'):
