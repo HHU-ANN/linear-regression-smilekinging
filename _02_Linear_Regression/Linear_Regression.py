@@ -20,21 +20,19 @@ def lasso(data):
     x,Y = read_data()
     weight = np.ones([1,6])
     y = np.dot(weight,x.T)
-    lambd = 1
-    loss = (np.sum(y - Y)**2) / 6
-    lw = np.linalg.norm(weight,ord = 1) + lambd * np.linalg.norm(y-Y,ord = 1) / 12
-    rw = 0
+    lambd = 0.5
+    #loss = (np.sum(y - Y)**2) / 6 + lambd * np.linalg.norm(y-Y,ord = 1) / 12
+    dw = np.dot(x.T,np.dot(x,weight) - y) / n + lambd * np.sign(w)
     rate = 1e-10
     for i in range(int(2e6)):
         y = np.dot(weight, x.T)
-        loss = (np.sum(y - Y) ** 2) / 6 + lambd * np.linalg.norm(y-Y,ord = 1) / 12
+        #loss = (np.sum(y - Y) ** 2) / 6 + lambd * np.linalg.norm(y-Y,ord = 1) / 12
         if abs(loss) < label:
             break
-        dw = np.dot((y - Y),x)
-        rw = lw
-        weight = weight * ( 1 - (rate * lambd / 6)) - dw * rate
-    for i in range(6):
-        weight[1][i] = weight[1][i] + 3
+        #dw = np.dot((y - Y),x)
+        dw = np.dot(x.T,np.dot(x,weight) - y) / n + lambd * np.sign(w)
+        #weight = weight * ( 1 - (rate * lambd / 6)) - dw * rate
+        weight = weight - rate * dw
     return weight @ data
 
 def read_data(path='./data/exp02/'):
