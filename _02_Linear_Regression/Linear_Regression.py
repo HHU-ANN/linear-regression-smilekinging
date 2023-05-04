@@ -16,6 +16,7 @@ def ridge(data):
     
 def lasso(data):
     label = 2e-8
+    m = 6
     x,Y = read_data()
     weight = np.ones([1,6])
     y = np.dot(weight,x.T)
@@ -31,7 +32,7 @@ def lasso(data):
             break
         dw = np.dot((y - Y),x)
         rw = lw
-        weight = weight * ( 1 - (rate * lambd / m)) - dw * rate
+        weight = weight * ( 1 - (rate * lambd / 6)) - dw * rate
     return weight @ data
 
 def read_data(path='./data/exp02/'):
