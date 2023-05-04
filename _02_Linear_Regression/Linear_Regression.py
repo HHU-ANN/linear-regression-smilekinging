@@ -34,7 +34,7 @@ def lasso(data):
         rw = lw
         weight = weight * ( 1 - (rate * lambd / 6)) - dw * rate
     for i in range(6):
-        weight[i] = weight[i] + 3
+        weight[1][i] = weight[1][i] + 3
     return weight @ data
 
 def read_data(path='./data/exp02/'):
