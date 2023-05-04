@@ -20,6 +20,7 @@ def lasso(data):
     x,Y = read_data()
     #weight = np.ones([1,6])
     weight = np.zeros(6)
+    weight = weight.reshape(-1,1)
     y = np.dot(weight,x.T)
     lambd = 0.5
     loss = (np.sum(y - Y)**2) / 6 + lambd * np.linalg.norm(y-Y,ord = 1) / 12
