@@ -19,13 +19,14 @@ def lasso(data):
     x,Y = read_data()
     weight = np.ones([1,6])
     y = np.dot(weight,x.T)
+    lambd = 1
     loss = (np.sum(y - Y)**2) / 6
-    lw = np.linalg.norm(weight,ord = 1) + np.linalg.norm(y-Y,ord = 1)
+    lw = np.linalg.norm(weight,ord = 1) + lamdb * np.linalg.norm(y-Y,ord = 1) / 12
     rw = 0
     rate = 1e-10
     for i in range(int(2e6)):
         y = np.dot(weight, x.T)
-        loss = (np.sum(y - Y) ** 2) / 6 + np.linalg.norm(y-Y,ord = 1)
+        loss = (np.sum(y - Y) ** 2) / 6 + lamdb * np.linalg.norm(y-Y,ord = 1) / 12
         if abs(loss) < label:
             break
         dw = np.dot((y - Y),x)
