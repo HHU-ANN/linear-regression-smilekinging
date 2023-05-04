@@ -18,23 +18,23 @@ def lasso(data):
     label = 2e-8
     m = 6
     x,Y = read_data()
-    #weight = np.ones([1,6])
-    weight = np.zeros(6)
-    weight = weight.reshape(-1,1)
+    weight = np.ones([1,6])
+    #weight = np.zeros(6)
+    #weight = weight.reshape(-1,1)
     y = np.dot(weight,x.T)
     lambd = 0.5
     loss = (np.sum(y - Y)**2) / 6 + lambd * np.linalg.norm(y-Y,ord = 1) / 12
-    #dw = np.dot((y - Y),x)
-    dw = np.dot(y - Y, x) / n + lambd * np.sign(weight)
+    dw = np.dot((y - Y),x)
+    #dw = np.dot(y - Y, x) / n + lambd * np.sign(weight)
     rate = 1e-10
     for i in range(int(2e5)):
         y = np.dot(weight, x.T)
-        #loss = (np.sum(y - Y) ** 2) / 6 + lambd * np.linalg.norm(y-Y,ord = 1) / 12
+        loss = (np.sum(y - Y) ** 2) / 6 + lambd * np.linalg.norm(y-Y,ord = 1) / 12
         if abs(loss) < label:
             break
-        #dw = np.dot((y - Y),x)
-        dw = np.dot(y - Y, x) / n + lambd * np.sign(weight)
-        #weight = weight * ( 1 - (rate * lambd / 6)) - dw * rate
+        dw = np.dot((y - Y),x)
+        #dw = np.dot(y - Y, x) / n + lambd * np.sign(weight)
+        weight = weight * ( 1 - (rate * lambd / 6)) - dw * rate
         weight = weight - rate * dw
     return weight @ data
 
