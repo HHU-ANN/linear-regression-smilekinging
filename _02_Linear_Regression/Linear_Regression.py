@@ -23,7 +23,7 @@ def lasso(data):
     for i in range(int(2e5)):
         y = np.dot(weight, x.T)
         dw = np.dot(y - Y, x) + lambd * np.sign(weight)
-        weight = weight * (1 - (rate * lambd / 6)) - dw * rat
+        weight = weight * (1 - (rate * lambd / 6)) - dw * rate
     return weight @ data
 
 def read_data(path='./data/exp02/'):
